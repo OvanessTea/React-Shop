@@ -36,9 +36,8 @@ function Main() {
     };
     const addToBasket = (item) => {
         const itemIndex = order.findIndex(
-            (orderItem) => orderItem.id === item.id
+            (orderItem) => orderItem.appId === item.appId
         );
-        console.log(itemIndex);
         if (itemIndex < 0) {
             const newItem = {
                 ...item,

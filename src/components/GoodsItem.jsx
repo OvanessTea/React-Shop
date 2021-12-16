@@ -27,7 +27,7 @@ function GoodsItem(props) {
                 <div className="card-action">
                     <button
                         className="btn"
-                        onClick={() => addToBasket(appId, title, price)}
+                        onClick={() => addToBasket({ appId, title, price })}
                     >
                         Buy now
                     </button>
