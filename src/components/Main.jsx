@@ -58,6 +58,10 @@ function Main() {
             setOrder(newOrder);
         }
     };
+    const removeFromBasket = (itemId) => {
+        const newOrder = order.filter((el) => el.appId !== itemId);
+        setOrder(newOrder);
+    };
 
     useEffect(function getGoods() {
         fetch(`${API_URL}Counter%20Strike/page/1`, {
@@ -85,7 +89,13 @@ function Main() {
             ) : (
                 <GoodsList goods={goods} addToBasket={addToBasket} />
             )}
-            {isBasketShow && <BasketList order={order} />}
+            {isBasketShow && (
+                <BasketList
+                    order={order}
+                    handleBasketShow={handleBasketShow}
+                    removeFromBasket={removeFromBasket}
+                />
+            )}
         </main>
     );
 }
