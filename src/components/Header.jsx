@@ -11,7 +11,9 @@ function Header() {
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li>
                         <a
-                            href="index.html"
+                            href="https://github.com/OvanessTea/React-Shop"
+                            target="_blank"
+                            rel="noreferrer"
                             className="blue-grey-text text-darken-2"
                         >
                             Repo
