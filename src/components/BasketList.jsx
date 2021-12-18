@@ -5,6 +5,8 @@ function BasketList(props) {
         order = [],
         handleBasketShow = Function.prototype,
         removeFromBasket = Function.prototype,
+        incQuantity = Function.prototype,
+        decQuantity = Function.prototype,
     } = props;
 
     console.log(order);
@@ -18,6 +20,8 @@ function BasketList(props) {
                         key={item.appId}
                         {...item}
                         removeFromBasket={removeFromBasket}
+                        incQuantity={incQuantity}
+                        decQuantity={decQuantity}
                     />
                 ))
             ) : (
@@ -25,6 +29,14 @@ function BasketList(props) {
             )}
             <li className="collection-item active">
                 Общее количество товаров: {order.length}
+                <button
+                    className="btn-flat waves-effect waves-light right btn-arrange"
+                    type="submit"
+                    name="action"
+                >
+                    Оформить
+                    <i class="material-icons right">send</i>
+                </button>
             </li>
             <i
                 className="material-icons basket-close"

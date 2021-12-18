@@ -55,6 +55,7 @@ nav {
     max-width: 95%;
     box-shadow: inset -1px 3px 8px 5px #1f87ff,
         2px 5px 16px 0px #0e325b 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    animation: show 500ms ease-in-out;
 }
 .basket-close {
     cursor: pointer;
@@ -66,10 +67,51 @@ nav {
 .basket-delete {
     cursor: pointer;
 }
-
+.change-quantity {
+    cursor: pointer;
+    vertical-align: middle;
+    color: #26a69a;
+}
+.btn-arrange {
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.5rem;
+    vertical-align: middle;
+    background-color: #26a69a;
+    color: white;
+}
+.btn-arrange:hover {
+    background-color: #fff;
+    color: #26a69a;
+    border-radius: 5px;
+}
+#toast-container {
+    top: 3rem;
+    animation: showAlert 300ms ease-in-out;
+}
 @media (min-width: 767px) {
     .cart {
         top: 7rem;
         bottom: unset;
+    }
+}
+@keyframes show {
+    from {
+        top: 70%;
+        opacity: 0;
+    }
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
+@keyframes showAlert {
+    from {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0rem);
     }
 }

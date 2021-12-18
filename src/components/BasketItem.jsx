@@ -5,8 +5,9 @@ function BasketItem(props) {
         price,
         quantity,
         removeFromBasket = Function.prototype,
+        incQuantity = Function.prototype,
+        decQuantity = Function.prototype,
     } = props;
-
     let totalPrice = price
         .split("")
         .map(function (item) {
@@ -30,7 +31,21 @@ function BasketItem(props) {
 
     return (
         <li className="collection-item">
-            {title} x {quantity} = {totalPrice}
+            {title}{" "}
+            <i
+                className="material-icons change-quantity"
+                onClick={() => decQuantity(appId)}
+            >
+                remove
+            </i>{" "}
+            x{quantity}
+            <i
+                className="material-icons change-quantity"
+                onClick={() => incQuantity(appId)}
+            >
+                add
+            </i>{" "}
+            = {totalPrice}
             <span className="secondary-content">
                 <i
                     className="material-icons basket-delete"
