@@ -33,6 +33,7 @@ function Main() {
                 console.error(err);
             });
     };
+
     const handleBasketShow = () => {
         setBasketShow(!isBasketShow);
     };
