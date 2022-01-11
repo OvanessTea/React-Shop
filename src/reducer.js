@@ -8,25 +8,26 @@ export function reducer(state, { type, payload }) {
                 goods: payload || [],
                 loading: false,
             };
-        // case "SEARCH_GOODS":
-        //     fetch(`${API_URL}${payload}/page/1`, {
-        //         method: "GET",
-        //         headers: {
-        //             "x-rapidapi-host": API_HOST,
-        //             "x-rapidapi-key": API_KEY,
-        //         },
-        //     })
-        //         .then((response) => response.json())
-        //         .then((data) => {
-        //             return {
-        //                 ...state,
-        //                 goods: data,
-        //                 loading: false,
-        //             };
-        //         })
-        //         .catch((err) => {
-        //             console.error(err);
-        //         });
+        case "SEARCH_GOODS":
+            fetch(`${API_URL}${payload}/page/1`, {
+                method: "GET",
+                headers: {
+                    "x-rapidapi-host": API_HOST,
+                    "x-rapidapi-key": API_KEY,
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    return {
+                        ...state,
+                        goods: data,
+                        loading: false,
+                    };
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        // eslint-disable-next-line no-fallthrough
         case "ADD_TO_BASKET":
             const itemIndex = state.order.findIndex(
                 (orderItem) => orderItem.appId === payload.id
