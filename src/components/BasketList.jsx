@@ -1,29 +1,16 @@
 import { BasketItem } from "./BasketItem";
+import { useContext } from "react";
+import { ShopContext } from "../context";
 
-function BasketList(props) {
-    const {
-        order = [],
-        handleBasketShow = Function.prototype,
-        removeFromBasket = Function.prototype,
-        incQuantity = Function.prototype,
-        decQuantity = Function.prototype,
-    } = props;
-
-    console.log(order);
+function BasketList() {
+    const { order = [], handleBasketShow = Function.prototype } =
+        useContext(ShopContext);
 
     return (
         <ul className="collection basket-list">
             <li className="collection-item active">Корзина</li>
             {order.length ? (
-                order.map((item) => (
-                    <BasketItem
-                        key={item.appId}
-                        {...item}
-                        removeFromBasket={removeFromBasket}
-                        incQuantity={incQuantity}
-                        decQuantity={decQuantity}
-                    />
-                ))
+                order.map((item) => <BasketItem key={item.appId} {...item} />)
             ) : (
                 <li className="collection-item">Корзина пуста</li>
             )}
@@ -35,7 +22,7 @@ function BasketList(props) {
                     name="action"
                 >
                     Оформить
-                    <i class="material-icons right">send</i>
+                    <i className="material-icons right">send</i>
                 </button>
             </li>
             <i

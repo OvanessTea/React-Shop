@@ -1,13 +1,12 @@
+import { useContext } from "react";
+import { ShopContext } from "../context";
+
 function BasketItem(props) {
-    const {
-        appId,
-        title,
-        price,
-        quantity,
-        removeFromBasket = Function.prototype,
-        incQuantity = Function.prototype,
-        decQuantity = Function.prototype,
-    } = props;
+    const { appId, title, price, quantity } = props;
+
+    const { removeFromBasket, incQuantity, decQuantity } =
+        useContext(ShopContext);
+
     let totalPrice = price
         .split("")
         .map(function (item) {
