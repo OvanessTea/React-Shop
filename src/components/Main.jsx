@@ -9,27 +9,27 @@ import { BasketList } from "./BasketList";
 import { Alert } from "./Alert";
 
 function Main() {
-    const { loading, order, isBasketShow, alertName, setGoods } =
+    const { loading, order, isBasketShow, alertName, setGoods, toggleLoading } =
         useContext(ShopContext);
 
-    // const searchGoods = (str) => {
-    //     setLoading(true);
-    //     fetch(`${API_URL}${str}/page/1`, {
-    //         method: "GET",
-    //         headers: {
-    //             "x-rapidapi-host": API_HOST,
-    //             "x-rapidapi-key": API_KEY,
-    //         },
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setGoods(data);
-    //             setLoading(false);
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //         });
-    // };
+    const searchGoods = (str) => {
+        toggleLoading(true);
+        fetch(`${API_URL}${str}/page/1`, {
+            method: "GET",
+            headers: {
+                "x-rapidapi-host": API_HOST,
+                "x-rapidapi-key": API_KEY,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setGoods(data);
+                toggleLoading(false);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
 
     useEffect(function getGoods() {
         fetch(`${API_URL}Counter%20Strike/page/1`, {
@@ -41,7 +41,7 @@ function Main() {
         })
             .then((response) => response.json())
             .then((data) => {
-                setGoods(data.featured);
+                setGoods(data);
             })
             .catch((err) => {
                 console.error(err);
@@ -50,7 +50,7 @@ function Main() {
     }, []);
     return (
         <main className="container content">
-            <Search />
+            <Search searchGoods={searchGoods} />
             <Cart quantity={order.length} />
             {loading ? <Preloader /> : <GoodsList />}
             {isBasketShow && <BasketList />}

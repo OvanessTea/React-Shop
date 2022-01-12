@@ -1,5 +1,3 @@
-import { API_HOST, API_KEY, API_URL } from "./config";
-
 export function reducer(state, { type, payload }) {
     switch (type) {
         case "SET_GOODS":
@@ -8,26 +6,11 @@ export function reducer(state, { type, payload }) {
                 goods: payload || [],
                 loading: false,
             };
-        case "SEARCH_GOODS":
-            fetch(`${API_URL}${payload}/page/1`, {
-                method: "GET",
-                headers: {
-                    "x-rapidapi-host": API_HOST,
-                    "x-rapidapi-key": API_KEY,
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    return {
-                        ...state,
-                        goods: data,
-                        loading: false,
-                    };
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-        // eslint-disable-next-line no-fallthrough
+        case "TOGGLE_LOADING":
+            return {
+                ...state,
+                loading: payload,
+            };
         case "ADD_TO_BASKET":
             const itemIndex = state.order.findIndex(
                 (orderItem) => orderItem.appId === payload.id

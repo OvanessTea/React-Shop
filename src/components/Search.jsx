@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import { ShopContext } from "../context";
+import React, { useState } from "react";
 
-const Search = () => {
-    const { searchGoods = Function.prototype } = useContext(ShopContext);
-    const search = "";
+const Search = (props) => {
+    const { searchGoods = Function.prototype } = props;
+    const [search, setSearch] = useState("");
     const handleKey = (event) => {
         if (event.key === "Enter") {
             searchGoods(search);
@@ -19,7 +18,7 @@ const Search = () => {
                     placeholder="search"
                     type="search"
                     value={search}
-                    onChange={(event) => handleKey(event.target.value)}
+                    onChange={(event) => setSearch(event.target.value)}
                     onKeyDown={handleKey}
                 />
                 <button

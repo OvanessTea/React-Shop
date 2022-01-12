@@ -13,7 +13,9 @@ const initialState = {
 
 export const ContextProvider = ({ children }) => {
     const [value, dispatch] = useReducer(reducer, initialState);
-
+    value.toggleLoading = (flag) => {
+        dispatch({ type: "TOGGLE_LOADING", payload: flag });
+    };
     value.addToBasket = (item) => {
         dispatch({ type: "ADD_TO_BASKET", payload: item });
     };
@@ -34,9 +36,6 @@ export const ContextProvider = ({ children }) => {
     };
     value.setGoods = (data) => {
         dispatch({ type: "SET_GOODS", payload: data });
-    };
-    value.searchGoods = (str) => {
-        dispatch({ type: "SEARCH_GOODS", payload: str });
     };
 
     return (
